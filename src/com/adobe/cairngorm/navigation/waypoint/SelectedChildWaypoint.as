@@ -72,6 +72,14 @@ public class SelectedChildWaypoint extends AbstractWaypoint implements IWaypoint
 			this.view = view;
 			view.addEventListener(IndexChangedEvent.CHANGE, changeHandler, false, 0, true);
 		}
+
+        public function unsubscribeFromViewChange():void
+        {
+            if (view)
+            {
+                view.removeEventListener(IndexChangedEvent.CHANGE, changeHandler);
+            }
+        }
 		
 		private function changeHandler(event:IndexChangedEvent):void
 		{
@@ -104,5 +112,5 @@ public class SelectedChildWaypoint extends AbstractWaypoint implements IWaypoint
 			}
 			return null;
 		}
-	}
+}
 }

@@ -76,6 +76,14 @@ public class CurrentStateWaypoint extends AbstractWaypoint implements IWaypoint
 			this.view = view;
 			view.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, changeHandler, false, 0, true);
 		}
+
+        public function unsubscribeFromViewChange():void
+        {
+            if (view)
+            {
+                view.removeEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, changeHandler);
+            }
+        }
 		
 		private function changeHandler(event:StateChangeEvent):void
 		{
@@ -87,6 +95,8 @@ public class CurrentStateWaypoint extends AbstractWaypoint implements IWaypoint
 		public function handleNavigationChange(event:NavigationEvent):void
 		{
 			view.currentState=NavigationUtil.getLast(event.destination);
-		}	
-	}
+		}
+
+
+}
 }
